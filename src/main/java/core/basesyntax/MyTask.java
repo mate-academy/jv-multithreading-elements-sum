@@ -3,12 +3,11 @@ package core.basesyntax;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
-import java.util.function.Consumer;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int MAX_WORKLOAD = 10;
     private final int startPoint;
     private final int finishPoint;
-    private static final int MAX_WORKLOAD = 10;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
