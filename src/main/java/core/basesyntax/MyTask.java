@@ -26,14 +26,11 @@ public class MyTask extends RecursiveTask<Long> {
             }
             return result;
         } else {
-            if (startPoint >= finishPoint) {
-                return 0L;
+            long result = 0;
+            for (int i = startPoint; i < finishPoint; i++) {
+                result += i;
             }
-            if (startPoint == finishPoint - 1) {
-                return (long) startPoint;
-            }
-            MyTask myTask = new MyTask(startPoint + 1, finishPoint);
-            return myTask.compute() + startPoint;
+            return result;
         }
     }
 
