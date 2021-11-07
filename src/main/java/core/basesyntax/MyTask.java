@@ -25,13 +25,12 @@ public class MyTask extends RecursiveTask<Long> {
             for (RecursiveTask<Long> subTask : subTasks) {
                 sum += subTask.join();
             }
-            return sum;
         } else {
             for (int i = startPoint; i < finishPoint; i++) {
                 sum += i;
             }
-            return sum;
         }
+        return sum;
     }
 
     private List<RecursiveTask<Long>> createSubTasks() {
