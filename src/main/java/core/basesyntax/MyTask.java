@@ -43,15 +43,7 @@ public class MyTask extends RecursiveTask<Long> {
                     + finishPoint
                     + " maxValue: "
                     + maxValue);
-            int value = 0;
-            if (finishPoint < startPoint) {
-                return (long) value;
-            } else if (finishPoint == maxValue && (finishPoint - startPoint) <= 10) {
-                value = (startPoint + finishPoint - 1) * (finishPoint - startPoint) / 2;
-            } else {
-                value = (startPoint + finishPoint) * (finishPoint - startPoint + 1) / 2;
-            }
-            return (long) value;
+            return startPoint >= finishPoint ? 0 : calculateSum(startPoint, finishPoint);
         }
     }
 
@@ -69,5 +61,15 @@ public class MyTask extends RecursiveTask<Long> {
         subTasks.add(first);
         subTasks.add(second);
         return subTasks;
+    }
+
+    private Long calculateSum(int startPoint, int finishPoint) {
+        int value = 0;
+        if (finishPoint == maxValue && (finishPoint - startPoint) <= 10) {
+            value = (startPoint + finishPoint - 1) * (finishPoint - startPoint) / 2;
+        } else {
+            value = (startPoint + finishPoint) * (finishPoint - startPoint + 1) / 2;
+        }
+        return (long) value;
     }
 }
