@@ -20,17 +20,17 @@ public class MyTask extends RecursiveTask<Long> {
             for (RecursiveTask<Long> recursiveTask : recursiveTasks) {
                 recursiveTask.fork();
             }
-            Long res = 0L;
+            Long result = 0L;
             for (RecursiveTask<Long> recursiveTask : recursiveTasks) {
-                res += recursiveTask.join();
+                result += recursiveTask.join();
             }
-            return res;
+            return result;
         } else {
-            Long res = 0L;
+            Long result = 0L;
             for (int i = startPoint; i < finishPoint; i++) {
-                res += i;
+                result += i;
             }
-            return res;
+            return result;
         }
     }
 
