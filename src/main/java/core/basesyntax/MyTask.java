@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
-    private static final Integer TASK_LOAD = 10;
+    private static final Integer MAX_DISTANCE = 10;
     private int startPoint;
     private int finishPoint;
 
@@ -17,7 +17,7 @@ public class MyTask extends RecursiveTask<Long> {
     @Override
     protected Long compute() {
         long result = 0L;
-        if (finishPoint - startPoint > TASK_LOAD) {
+        if (finishPoint - startPoint > MAX_DISTANCE) {
             List<RecursiveTask<Long>> recursiveTasks = new ArrayList<>(createSubTask());
             for (RecursiveTask<Long> recursiveTask : recursiveTasks) {
                 recursiveTask.fork();
@@ -35,9 +35,8 @@ public class MyTask extends RecursiveTask<Long> {
 
     private List<RecursiveTask<Long>> createSubTask() {
         List<RecursiveTask<Long>> recursiveTasks = new ArrayList<>();
-        int difference = finishPoint - startPoint;
-        RecursiveTask<Long> first = new MyTask(startPoint, finishPoint - difference / 2);
-        RecursiveTask<Long> second = new MyTask(finishPoint - difference / 2, finishPoint);
+        RecursiveTask<Long> first = new MyTask(startPoint, (finishPoint + startPoint) / 2);
+        RecursiveTask<Long> second = new MyTask((finishPoint + startPoint) / 2, finishPoint);
         recursiveTasks.add(first);
         recursiveTasks.add(second);
         return recursiveTasks;
