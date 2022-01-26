@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int MAX_DISTANCE_SINGLE_TASK = 10;
     private int startPoint;
     private int finishPoint;
 
@@ -16,7 +17,7 @@ public class MyTask extends RecursiveTask<Long> {
     @Override
     protected Long compute() {
         long result = 0;
-        if (finishPoint - startPoint > 10) {
+        if (finishPoint - startPoint > MAX_DISTANCE_SINGLE_TASK) {
             List<RecursiveTask<Long>> subTaskList = new ArrayList<>(createSubTasks());
             for (RecursiveTask<Long> subTask : subTaskList) {
                 subTask.fork();
