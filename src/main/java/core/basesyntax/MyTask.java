@@ -2,8 +2,8 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
+import java.util.stream.IntStream;
 
 public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
@@ -32,18 +32,15 @@ public class MyTask extends RecursiveTask<Long> {
     }
 
     private long additionSubTask() {
-        long result = 0;
-        for (int i = startPoint; i < finishPoint; i++) {
-            result += i;
-        }
-        return result;
+        return IntStream.range(startPoint, finishPoint)
+                .sum();
     }
 
     private List<RecursiveTask<Long>> createSubTasks() {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
         int lengthPoint = finishPoint - startPoint;
-        RecursiveTask<Long> firstTask = new MyTask(startPoint, startPoint + lengthPoint/2 - 1);
-        RecursiveTask<Long> secondTask = new MyTask(startPoint + lengthPoint/2, finishPoint);
+        RecursiveTask<Long> firstTask = new MyTask(startPoint, startPoint + lengthPoint / 2);
+        RecursiveTask<Long> secondTask = new MyTask(startPoint + lengthPoint / 2, finishPoint);
         subTasks.add(firstTask);
         subTasks.add(secondTask);
         return subTasks;
