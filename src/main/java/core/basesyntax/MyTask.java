@@ -30,12 +30,12 @@ public class MyTask extends RecursiveTask<Long> {
         return result;
     }
 
-        private List<RecursiveTask<Long>> createSubTasks () {
-            List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-            RecursiveTask<Long> first = new MyTask(startPoint, (startPoint + finishPoint) / 2);
-            RecursiveTask<Long> second = new MyTask((startPoint + finishPoint) / 2, finishPoint);
-            subTasks.add(first);
-            subTasks.add(second);
-            return subTasks;
-        }
+    private List<RecursiveTask<Long>> createSubTasks() {
+        List<RecursiveTask<Long>> subTasks = new ArrayList<>();
+        RecursiveTask<Long> first = new MyTask(startPoint, (startPoint + finishPoint) / 2);
+        RecursiveTask<Long> second = new MyTask((startPoint + finishPoint) / 2, finishPoint);
+        subTasks.add(first);
+        subTasks.add(second);
+        return subTasks;
     }
+}
