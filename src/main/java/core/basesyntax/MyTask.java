@@ -16,8 +16,8 @@ public class MyTask extends RecursiveTask<Long> {
     @Override
     protected Long compute() {
         if (finishPoint - startPoint > 10) {
-            System.out.printf("Fork-join work with startPoint = %d " +
-                    "and finishPoint %d%n", startPoint, finishPoint);
+            System.out.printf("Fork-join work with startPoint = %d "
+                    + "and finishPoint %d%n", startPoint, finishPoint);
             List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks());
             for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
