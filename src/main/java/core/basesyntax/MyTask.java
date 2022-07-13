@@ -19,11 +19,11 @@ public class MyTask extends RecursiveTask<Long> {
     protected Long compute() {
         if (finishPoint - startPoint > POINT_DIFF_THRESHOLD) {
             List<RecursiveTask<Long>> subTasks = createSubTasks(startPoint, finishPoint);
-            for( RecursiveTask<Long> subTask : subTasks) {
+            for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
             }
             Long result = 0L;
-            for( RecursiveTask<Long> subTask : subTasks) {
+            for (RecursiveTask<Long> subTask : subTasks) {
                 result += subTask.join();
             }
             return result;
@@ -34,7 +34,7 @@ public class MyTask extends RecursiveTask<Long> {
 
     private List<RecursiveTask<Long>> createSubTasks(int startPoint, int finishPoint) {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-        int midPoint = startPoint + (finishPoint - startPoint) / 2 ;
+        int midPoint = startPoint + (finishPoint - startPoint) / 2;
         subTasks.add(new MyTask(startPoint, midPoint));
         subTasks.add(new MyTask(midPoint, finishPoint));
         return subTasks;
