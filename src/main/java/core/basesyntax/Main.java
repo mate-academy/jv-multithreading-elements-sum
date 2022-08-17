@@ -6,8 +6,13 @@ public class Main {
     public static void main(String[] args) {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
-        MyTask task = new MyTask(0, 100);
+        MyTask task = new MyTask(-121, -76);
         Long result = forkJoinPool.invoke(task);
         System.out.println("Result = " + result);
+        int sum = 0;
+        for (int i = 0; i < 100; i++) {
+            sum += i;
+        }
+
     }
 }
