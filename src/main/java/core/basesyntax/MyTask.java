@@ -18,11 +18,11 @@ public class MyTask extends RecursiveTask<Long> {
     protected Long compute() {
         if (finishPoint - startPoint > 10) {
             List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks());
-            for (RecursiveTask<Long> task: subTasks ) {
+            for (RecursiveTask<Long> task: subTasks) {
                 task.fork();
             }
             long result = 0;
-            for (RecursiveTask<Long> task: subTasks ) {
+            for (RecursiveTask<Long> task: subTasks) {
                 result += task.join();
             }
             return result;
@@ -31,10 +31,10 @@ public class MyTask extends RecursiveTask<Long> {
         }
     }
 
-    private List<RecursiveTask<Long>> createSubTasks () {
+    private List<RecursiveTask<Long>> createSubTasks() {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-        RecursiveTask<Long> first = new MyTask(startPoint, (finishPoint + startPoint)/2 );
-        RecursiveTask<Long> second = new MyTask((finishPoint + startPoint)/2, finishPoint);
+        RecursiveTask<Long> first = new MyTask(startPoint, (finishPoint + startPoint) / 2);
+        RecursiveTask<Long> second = new MyTask((finishPoint + startPoint) / 2, finishPoint);
         subTasks.add(first);
         subTasks.add(second);
         return subTasks;
