@@ -32,7 +32,7 @@ public class MyTask extends RecursiveTask<Long> {
             System.out.println("RecursiveAction: Doing task myself, difference : "
                     + difference + ". " + Thread.currentThread().getName());
             long result = 0;
-            for (int i = startPoint; i < finishPoint; i++){
+            for (int i = startPoint; i < finishPoint; i++) {
                 result += i;
             }
             return result;
