@@ -2,9 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
-import java.util.stream.Collectors;
 
 public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
