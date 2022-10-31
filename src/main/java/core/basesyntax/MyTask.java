@@ -7,16 +7,29 @@ import java.util.concurrent.RecursiveTask;
 public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
     private int finishPoint;
+    private boolean mainFlag;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
         this.finishPoint = finishPoint;
+        this.mainFlag = true;
+    }
+
+    public MyTask(int startPoint, int finishPoint,boolean mainFlag) {
+        this.startPoint = startPoint;
+        this.finishPoint = finishPoint;
+        this.mainFlag = mainFlag;
     }
 
     @Override
     protected Long compute() {
+
         if ((finishPoint - startPoint) <= 1) {
             return 0L;
+        }
+
+        if (this.mainFlag) {
+            this.finishPoint--;
         }
         if ((finishPoint - startPoint) >= 10) {
             List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubtask());
@@ -27,9 +40,6 @@ public class MyTask extends RecursiveTask<Long> {
             for (RecursiveTask<Long> subTask: subTasks) {
                 result += subTask.join();
             }
-            if (Thread.currentThread().getName().equals("main")) {
-                result = result - finishPoint;
-            }
             return result;
         } else {
             Long result = 0L;
@@ -37,9 +47,6 @@ public class MyTask extends RecursiveTask<Long> {
             while (ptr <= finishPoint) {
                 result += ptr;
                 ptr++;
-            }
-            if (Thread.currentThread().getName().equals("main")) {
-                result = result - finishPoint;
             }
             return result;
         }
@@ -50,8 +57,8 @@ public class MyTask extends RecursiveTask<Long> {
         int end = this.finishPoint;
         int medium = start + (end - start) / 2;
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-        RecursiveTask<Long> first = new MyTask(start, medium);
-        RecursiveTask<Long> second = new MyTask(medium + 1, end);
+        RecursiveTask<Long> first = new MyTask(start, medium, false);
+        RecursiveTask<Long> second = new MyTask(medium + 1, end, false);
         subTasks.add(first);
         subTasks.add(second);
         return subTasks;
