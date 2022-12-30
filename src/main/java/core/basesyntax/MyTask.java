@@ -29,7 +29,7 @@ public class MyTask extends RecursiveTask<Long> {
     }
 
     private List<RecursiveTask<Long>> createSubTask() {
-        int finishSubPoint = finishPoint / 2;
+        int finishSubPoint = startPoint + (finishPoint - startPoint) / 2;
         return List.of(new MyTask(startPoint, finishSubPoint),
                 new MyTask(finishSubPoint, finishPoint));
     }
