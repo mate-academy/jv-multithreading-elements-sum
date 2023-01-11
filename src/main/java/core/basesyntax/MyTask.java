@@ -5,7 +5,7 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
-    private final static int COUNT_TASKS_FOR_FORK = 10;
+    private static final int COUNT_TASKS_FOR_FORK = 10;
     private int startPoint;
     private int finishPoint;
 
