@@ -28,7 +28,8 @@ public class MyTask extends RecursiveTask<Long> {
             rightTask.fork();
             Long leftResult = leftTask.join();
             Long rightResult = rightTask.join();
-            System.out.println(Thread.currentThread().getName() + " : " + (leftResult + rightResult));
+            System.out.println(Thread.currentThread().getName() + " : "
+                    + (leftResult + rightResult));
             return leftResult + rightResult;
         }
     }
