@@ -27,7 +27,7 @@ public class MyTask extends RecursiveTask<Long> {
             first.fork();
             second.fork();
             sum = (first.join() + second.join());
-            }
+        }
         return sum;
     }
 }
