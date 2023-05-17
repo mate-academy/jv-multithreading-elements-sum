@@ -19,7 +19,7 @@ public class MyTask extends RecursiveTask<Long> {
             return computeDirectly();
         }
         MyTask leftTask = new MyTask(startPoint, startPoint + length / 2);
-        MyTask rightTask = new MyTask(startPoint + length / 2 + 1, finishPoint);
+        MyTask rightTask = new MyTask(startPoint + length / 2, finishPoint);
 
         leftTask.fork();
         rightTask.fork();
@@ -29,9 +29,10 @@ public class MyTask extends RecursiveTask<Long> {
 
         return leftResult + rightResult;
     }
+
     private Long computeDirectly() {
-        Long sum = 0L;
-        for (int i = startPoint; i <= finishPoint; i++) {
+        long sum = 0L;
+        for (int i = startPoint; i < finishPoint; i++) {
             sum += i;
         }
         return sum;
