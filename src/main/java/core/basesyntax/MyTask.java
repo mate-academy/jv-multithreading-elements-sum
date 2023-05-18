@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.IntStream;
 
-public class
-
-MyTask extends RecursiveTask<Long> {
+public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
     private int finishPoint;
 
