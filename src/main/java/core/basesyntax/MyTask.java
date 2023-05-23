@@ -35,7 +35,7 @@ public class MyTask extends RecursiveTask<Long> {
     private List<RecursiveTask<Long>> createSubtask() {
         List<RecursiveTask<Long>> subtasks = new ArrayList<>();
         RecursiveTask<Long> first = new MyTask(startPoint, (startPoint + finishPoint) / 2);
-        RecursiveTask<Long> second = new MyTask( (startPoint + finishPoint) / 2, finishPoint);
+        RecursiveTask<Long> second = new MyTask((startPoint + finishPoint) / 2, finishPoint);
         subtasks.add(first);
         subtasks.add(second);
         return subtasks;
