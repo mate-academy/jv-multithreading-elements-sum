@@ -6,8 +6,8 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
-    private final int startPoint;
-    private final int finishPoint;
+    private int startPoint;
+    private int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
