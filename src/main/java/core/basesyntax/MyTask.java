@@ -6,9 +6,9 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int DISTANCE = 10;
     private final int startPoint;
     private final int finishPoint;
-    private static final int DISTANCE = 10;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
