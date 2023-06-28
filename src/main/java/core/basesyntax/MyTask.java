@@ -28,7 +28,7 @@ public class MyTask extends RecursiveTask<Long> {
             return result;
         } else {
             long sum = 0;
-            for (int i = startPoint ; i < finishPoint; i++) {
+            for (int i = startPoint; i < finishPoint; i++) {
                 sum += i;
             }
             return sum;
@@ -38,7 +38,7 @@ public class MyTask extends RecursiveTask<Long> {
     private List<RecursiveTask<Long>> split() {
         List<RecursiveTask<Long>> tasks = new ArrayList<>();
         RecursiveTask<Long> first = new MyTask(startPoint, (finishPoint + startPoint) / 2);
-        RecursiveTask<Long> second = new MyTask((finishPoint + startPoint) / 2 , finishPoint);
+        RecursiveTask<Long> second = new MyTask((finishPoint + startPoint) / 2, finishPoint);
         tasks.add(first);
         tasks.add(second);
         return tasks;
