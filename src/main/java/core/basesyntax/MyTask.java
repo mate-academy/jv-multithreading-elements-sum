@@ -20,7 +20,7 @@ public class MyTask extends RecursiveTask<Long> {
         if (startPoint > finishPoint) {
             return 0L;
         }
-        if (Math.abs(diff) > 10) {
+        if (diff > 10) {
             List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks());
             for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
