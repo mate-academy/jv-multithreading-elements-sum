@@ -46,10 +46,10 @@ public class MyTask extends RecursiveTask<Long> {
 
     private void correctMixedNumbersRange() {
         if (startPoint < 0 && finishPoint > 0) {
-            if (Math.abs(startPoint) > Math.abs(finishPoint)) {
+            if (Math.abs(startPoint) >= Math.abs(finishPoint)) {
                 finishPoint = (finishPoint - 1) * -1;
             } else {
-                startPoint = ((startPoint * -1) + 1);
+                startPoint = (startPoint * -1) + 1;
             }
         }
     }
