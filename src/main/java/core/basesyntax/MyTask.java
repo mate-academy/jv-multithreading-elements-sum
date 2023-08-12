@@ -26,7 +26,7 @@ public class MyTask extends RecursiveTask<Long> {
             }
             return result;
         } else {
-           return sum();
+            return sum();
         }
     }
 
