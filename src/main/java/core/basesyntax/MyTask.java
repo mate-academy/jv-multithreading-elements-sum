@@ -40,10 +40,10 @@ public class MyTask extends RecursiveTask<Long> {
 
     private List<RecursiveTask<Long>> createSubTasks() {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-        int quarterLength  = (finishPoint - startPoint) / 4;
-        int firstQuarter  = startPoint + quarterLength;
-        int secondQuarter  = startPoint + 2 * quarterLength;
-        int thirdQuarter  = startPoint + 3 * quarterLength;
+        int quarterLength = (finishPoint - startPoint) / 4;
+        int firstQuarter = startPoint + quarterLength;
+        int secondQuarter = startPoint + 2 * quarterLength;
+        int thirdQuarter = startPoint + 3 * quarterLength;
         RecursiveTask<Long> first = new MyTask(startPoint, firstQuarter);
         RecursiveTask<Long> second = new MyTask(firstQuarter, secondQuarter);
         RecursiveTask<Long> third = new MyTask(secondQuarter, thirdQuarter);
