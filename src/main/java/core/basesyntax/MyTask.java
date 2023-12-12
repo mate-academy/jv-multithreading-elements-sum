@@ -1,6 +1,9 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.RecursiveTask;
+import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
@@ -13,7 +16,23 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        if (Math.abs(finishPoint - startPoint) > 10) {
+            List<RecursiveTask<Long>> subTasks = new ArrayList<>();
+            int portion = (finishPoint - startPoint) / 2;
+            subTasks.add(new MyTask(startPoint, startPoint + portion));
+            subTasks.add(new MyTask(startPoint + portion, finishPoint));
+            for (RecursiveTask<Long> subTask : subTasks) {
+                subTask.fork();
+            }
+            long result = 0;
+            for (RecursiveTask<Long> subTask : subTasks) {
+                result += subTask.join();
+            }
+            return result;
+        } else {
+            int direction = finishPoint >= startPoint ? 1 : -1;
+            return LongStream.rangeClosed(startPoint, finishPoint - direction)
+                    .sum();
+        }
     }
 }
