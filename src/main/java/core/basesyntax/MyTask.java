@@ -30,8 +30,7 @@ public class MyTask extends RecursiveTask<Long> {
             }
             return result;
         } else {
-            int direction = finishPoint >= startPoint ? 1 : -1;
-            return LongStream.rangeClosed(startPoint, finishPoint - direction)
+            return LongStream.rangeClosed(startPoint, finishPoint - 1)
                     .sum();
         }
     }
