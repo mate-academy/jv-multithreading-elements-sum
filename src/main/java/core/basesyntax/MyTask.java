@@ -38,8 +38,8 @@ public class MyTask extends RecursiveTask<Long> {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
         RecursiveTask<Long> first = new MyTask(startPoint,
                 startPoint + (finishPoint - startPoint) / 2);
-        RecursiveTask<Long> second = new MyTask(startPoint +
-                (finishPoint - startPoint) / 2, finishPoint);
+        RecursiveTask<Long> second = new MyTask(startPoint
+                + (finishPoint - startPoint) / 2, finishPoint);
         subTasks.add(first);
         subTasks.add(second);
         return subTasks;
