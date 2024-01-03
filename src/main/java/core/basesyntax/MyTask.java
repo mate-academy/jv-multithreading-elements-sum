@@ -19,7 +19,7 @@ public class MyTask extends RecursiveTask<Long> {
         } else {
             int middle = startPoint + (finishPoint - startPoint) / 2;
 
-            MyTask leftSubTask = new MyTask(startPoint, middle - 1);
+            MyTask leftSubTask = new MyTask(startPoint, middle);
             MyTask rightSubTask = new MyTask(middle, finishPoint);
 
             leftSubTask.fork();
@@ -34,7 +34,7 @@ public class MyTask extends RecursiveTask<Long> {
 
     private long calculateSumFromPoints() {
         long sum = 0;
-        while (startPoint <= finishPoint) {
+        while (startPoint < finishPoint) {
             sum += startPoint++;
         }
         return sum;
