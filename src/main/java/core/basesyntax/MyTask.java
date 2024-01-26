@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
