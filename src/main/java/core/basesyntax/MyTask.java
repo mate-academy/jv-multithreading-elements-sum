@@ -4,20 +4,17 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
-    private int startPoint;
-    private int finishPoint;
     private static final int THRESHOLD = 10;
     private final int startPoint;
     private final int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
-@@ -13,7 +15,30 @@ public MyTask(int startPoint, int finishPoint) {
+        this.finishPoint = finishPoint;
+    }
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
         if (finishPoint < startPoint) {
             return 0L;
         }
