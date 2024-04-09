@@ -1,5 +1,6 @@
 package core.basesyntax;
 
+import java.lang.annotation.Repeatable;
 import java.util.concurrent.ForkJoinPool;
 import org.junit.Assert;
 import org.junit.Test;
