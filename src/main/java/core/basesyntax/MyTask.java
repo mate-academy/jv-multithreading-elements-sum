@@ -15,7 +15,6 @@ public class MyTask extends RecursiveTask<Long> {
     protected Long compute() {
         long length = finishPoint - startPoint;
         if (length <= 10) {
-            // Прямий розрахунок суми, якщо діапазон 10 або менше
             long sum = 0;
             for (int i = startPoint; i < finishPoint; i++) {
                 sum += i;
