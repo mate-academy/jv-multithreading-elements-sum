@@ -7,6 +7,8 @@ public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
     private int finishPoint;
 
+    private static final int THRESHOLD = 10;
+
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
         this.finishPoint = finishPoint;
