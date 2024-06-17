@@ -1,8 +1,11 @@
 package core.basesyntax;
 
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int THRESHOLD = 10;
+
     private int startPoint;
     private int finishPoint;
 
@@ -13,7 +16,34 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        int range = finishPoint - startPoint;
+        if (range <= THRESHOLD) {
+            return computeDirectly();
+        } else {
+            int mid = startPoint + range / 2;
+            MyTask subTask1 = new MyTask(startPoint, mid);
+            MyTask subTask2 = new MyTask(mid, finishPoint);
+            subTask1.fork();
+            long result2 = subTask2.compute();
+            long result1 = subTask1.join();
+            long result = result1 + result2;
+            System.out.println("Merging results: " + result1 + " + " + result2 + " = " + result);
+            return result;
+        }
+    }
+
+    private Long computeDirectly() {
+        long sum = 0;
+        for (int i = startPoint; i < finishPoint; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+        MyTask task = new MyTask(0, 100);
+        long result = pool.invoke(task);
+        System.out.println("Final result: " + result);
     }
 }
