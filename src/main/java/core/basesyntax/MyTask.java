@@ -39,11 +39,4 @@ public class MyTask extends RecursiveTask<Long> {
         }
         return sum;
     }
-
-    public static void main(String[] args) {
-        ForkJoinPool pool = new ForkJoinPool();
-        MyTask task = new MyTask(0, 100);
-        long result = pool.invoke(task);
-        System.out.println("Final result: " + result);
-    }
 }
