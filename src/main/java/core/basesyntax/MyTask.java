@@ -6,7 +6,6 @@ public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
     private int finishPoint;
 
-
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
         this.finishPoint = finishPoint;
@@ -32,7 +31,7 @@ public class MyTask extends RecursiveTask<Long> {
     }
 
     private Long computeDirectly() {
-        Long sum = 0L;
+        long sum = 0L;
         for (int i = startPoint; i < finishPoint; i++) {
             sum += i;
         }
