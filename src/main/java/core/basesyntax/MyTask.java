@@ -4,9 +4,9 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int THRESHOLD = 10;
     private final int startPoint;
     private final int finishPoint;
-    private static final int THRESHOLD = 10;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
@@ -18,7 +18,7 @@ public class MyTask extends RecursiveTask<Long> {
         if (finishPoint - startPoint <= THRESHOLD) {
             return LongStream.range(startPoint, finishPoint).sum();
         } else {
-            int middle = startPoint + (finishPoint-startPoint) / 2;
+            int middle = startPoint + (finishPoint - startPoint) / 2;
             MyTask left = new MyTask(startPoint, middle);
             MyTask right = new MyTask(middle, finishPoint);
             left.fork();
