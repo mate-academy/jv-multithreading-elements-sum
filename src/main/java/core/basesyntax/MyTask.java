@@ -16,7 +16,8 @@ public class MyTask extends RecursiveTask<Long> {
     @Override
     protected Long compute() {
         if (finishPoint - startPoint > 10) {
-            List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks(startPoint, finishPoint));
+            List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks(
+                    startPoint, finishPoint));
             for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
             }
