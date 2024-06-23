@@ -7,8 +7,8 @@ import java.util.concurrent.RecursiveTask;
 public class MyTask extends RecursiveTask<Long> {
     private static final int MAX_DIFFERENCE = 10;
 
-    private int startPoint;
-    private int finishPoint;
+    private final int startPoint;
+    private final int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
