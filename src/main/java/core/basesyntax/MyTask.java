@@ -23,7 +23,8 @@ public class MyTask extends RecursiveTask<Long> {
 
             leftTask.fork(); // asynchronously execute the left task
             long rightResult = rightTask.compute(); // compute the right task directly
-            long leftResult = leftTask.join(); // wait for the left task to complete and get its result
+            long leftResult = leftTask.join(); // wait for the left task to
+            // complete and get its result
 
             return leftResult + rightResult;
         }
