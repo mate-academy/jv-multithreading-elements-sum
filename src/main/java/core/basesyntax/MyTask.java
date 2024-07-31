@@ -5,24 +5,23 @@ import java.util.concurrent.RecursiveTask;
 public class MyTask extends RecursiveTask<Long> {
     private int startPoint;
     private int finishPoint;
-    private int THRESHOLD;
+    private int threshold;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
         this.finishPoint = finishPoint;
-        this.THRESHOLD = finishPoint - startPoint;
+        this.threshold = finishPoint - startPoint;
     }
 
     @Override
     protected Long compute() {
-        if(THRESHOLD <= 10) {
-            System.out.printf("RecursiveTask: Doing the task where start = %s, and end = %s. " +
-                    "Thread: %s%n", startPoint, finishPoint, Thread.currentThread().getName());
+        if (threshold <= 10) {
+            System.out.printf("RecursiveTask: Doing the task where start = %s, and end = %s. "
+                    + "Thread: %s%n", startPoint, finishPoint, Thread.currentThread().getName());
             return sumOfConsecutiveIntegers(startPoint, finishPoint);
-        }
-        else {
-            System.out.printf("RecursiveTask: Splitting the task where start = %s, and end = %s. " +
-                    "Thread: %s%n", startPoint, finishPoint, Thread.currentThread().getName());
+        } else {
+            System.out.printf("RecursiveTask: Splitting the task where start = %s, and end = %s. "
+                    + "Thread: %s%n", startPoint, finishPoint, Thread.currentThread().getName());
             int middle = startPoint + (finishPoint - startPoint) / 2;
             MyTask leftTask = new MyTask(startPoint, middle);
             MyTask rightTask = new MyTask(middle, finishPoint);
