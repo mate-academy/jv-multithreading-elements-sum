@@ -3,8 +3,8 @@ package core.basesyntax;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
-    private int startPoint;
-    private int finishPoint;
+    private final int startPoint;
+    private final int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
