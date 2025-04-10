@@ -4,7 +4,7 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
-    private final int THRESHOLD = 10;
+    private final int threshold = 10;
     private int startPoint;
     private int finishPoint;
 
@@ -15,7 +15,7 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        if (finishPoint - startPoint < THRESHOLD) {
+        if (finishPoint - startPoint < threshold) {
             return findSum(startPoint, finishPoint);
         } else {
             int middle = (startPoint + finishPoint) / 2;
