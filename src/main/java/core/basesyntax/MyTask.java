@@ -11,6 +11,7 @@ public class MyTask extends RecursiveTask<Long> {
         this.finishPoint = finishPoint;
     }
 
+
     @Override
     protected Long compute() {
         int length = finishPoint - startPoint;
