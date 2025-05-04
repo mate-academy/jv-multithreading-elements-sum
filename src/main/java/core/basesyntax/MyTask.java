@@ -25,11 +25,11 @@ public class MyTask extends RecursiveTask<Long> {
             MyTask leftTask = new MyTask(startPoint, mid);
             MyTask rightTask = new MyTask(mid, finishPoint);
 
-            leftTask.fork(); // асинхронний запуск
-            long rightResult = rightTask.compute(); // синхронний підрахунок
-            long leftResult = leftTask.join(); // очікування результату лівої задачі
+            leftTask.fork();
+            long rightResult = rightTask.compute();
+            long leftResult = leftTask.join();
 
             return leftResult + rightResult;
+        }
     }
-}
 }
