@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
@@ -13,7 +15,32 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        long sum = 0;
+        if (finishPoint - startPoint > 10) {
+            List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSunTask());
+            for (RecursiveTask<Long> subTask : subTasks) {
+                subTask.fork();
+            }
+            long result = 0;
+            for (RecursiveTask<Long> subTask : subTasks) {
+                result += subTask.join();
+            }
+            return result;
+        } else {
+            for (int i = startPoint; i < finishPoint; i++) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+    
+    private List<RecursiveTask<Long>> createSunTask() {
+        int workload = finishPoint - startPoint;
+        List<RecursiveTask<Long>> subTasks = new ArrayList<>();
+        RecursiveTask<Long> first = new MyTask(startPoint, startPoint + (workload / 2) + 1);
+        RecursiveTask<Long> second = new MyTask(startPoint + (workload / 2) + 1, finishPoint);
+        subTasks.add(first);
+        subTasks.add(second);
+        return subTasks;
     }
 }
