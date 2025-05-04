@@ -3,8 +3,8 @@ package core.basesyntax;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
-    private int startPoint;
-    private int finishPoint;
+    private final int startPoint;
+    private final int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
@@ -13,7 +13,13 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        int sum = 0;
+        if (startPoint >= finishPoint) {
+            return (long) sum;
+        }
+        for (int i = startPoint; i < finishPoint; i++) {
+            sum += i;
+        }
+        return (long) sum;
     }
 }
