@@ -19,7 +19,7 @@ public class MyTask extends RecursiveTask<Long> {
         if (startPoint >= finishPoint) {
             return 0L;
         }
-        if (finishPoint - startPoint > 10) {
+        if (finishPoint - startPoint > THRESHOLD) {
             int middle = (finishPoint + startPoint) / 2;
             RecursiveTask<Long> left = new MyTask(startPoint, middle);
             RecursiveTask<Long> right = new MyTask(middle, finishPoint);
