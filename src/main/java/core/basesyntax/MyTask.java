@@ -27,7 +27,7 @@ public class MyTask extends RecursiveTask<Long> {
             return result;
         } else {
             long result = 0;
-            for (int i = startPoint; i <= finishPoint; i++) {
+            for (int i = startPoint; i < finishPoint; i++) {
                 result += i;
             }
             return result;
@@ -39,7 +39,7 @@ public class MyTask extends RecursiveTask<Long> {
         int middle = (startPoint + finishPoint) / 2;
 
         MyTask first = new MyTask(startPoint, middle);
-        MyTask second = new MyTask(middle + 1, finishPoint);
+        MyTask second = new MyTask(middle, finishPoint);
 
         subTasks.add(first);
         subTasks.add(second);
