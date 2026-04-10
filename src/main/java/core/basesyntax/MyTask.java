@@ -4,8 +4,8 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
 public class MyTask extends RecursiveTask<Long> {
-    public static final int THRESHOLD_LIMIT = 10;
-    private final int  startPoint;
+    private static final int THRESHOLD_LIMIT = 10;
+    private final int startPoint;
     private final int finishPoint;
 
     public MyTask(int startPoint, int finishPoint) {
