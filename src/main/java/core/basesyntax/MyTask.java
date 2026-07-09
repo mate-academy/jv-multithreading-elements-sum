@@ -3,7 +3,6 @@ package core.basesyntax;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
-    // Встановлюємо поріг, при якому припиняємо поділ (наприклад, 10 елементів)
     private static final int THRESHOLD = 10;
 
     private int startPoint;
@@ -22,9 +21,7 @@ public class MyTask extends RecursiveTask<Long> {
                 sum += i;
             }
             return sum;
-        }
-
-        else {
+        } else {
             int midPoint = startPoint + (finishPoint - startPoint) / 2;
             MyTask leftTask = new MyTask(startPoint, midPoint);
             MyTask rightTask = new MyTask(midPoint, finishPoint);
