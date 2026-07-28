@@ -15,7 +15,7 @@ public class MyTask extends RecursiveTask<Long> {
     protected Long compute() {
         int distance = finishPoint - startPoint;
         if (distance > 10) {
-            int middle = (startPoint + finishPoint) / 2;
+            int middle = startPoint + finishPoint / 2;
             MyTask task1 = new MyTask(startPoint, middle);
             MyTask task2 = new MyTask(middle, finishPoint);
             task1.fork();
@@ -25,7 +25,7 @@ public class MyTask extends RecursiveTask<Long> {
             return task1Result + task2Result;
         } else {
             long sum = 0L;
-            for (int i = startPoint; i <= finishPoint; i++) {
+            for (int i = startPoint; i < finishPoint; i++) {
                 sum += i;
             }
             return sum;
