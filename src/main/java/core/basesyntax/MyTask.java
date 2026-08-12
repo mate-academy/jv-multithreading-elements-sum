@@ -13,7 +13,13 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        if ((finishPoint - startPoint) > 10) {
+            fork();
+        }
+        long result = 0L;
+        for (int i = startPoint; i < finishPoint; i++) {
+            result += i;
+        }
+        return result;
     }
 }
