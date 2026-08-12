@@ -13,7 +13,23 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        int range = finishPoint - startPoint;
+        if (range > 0 && range <= 10) {
+            Long sum = 0L;
+            for (int i = startPoint; i < (startPoint + range); i++) {
+                sum += i;
+            }
+            return sum;
+        }
+        if (range > 10) {
+            int mid = startPoint + range / 2;
+            MyTask left = new MyTask(startPoint, mid);
+            MyTask right = new MyTask(mid, finishPoint);
+            left.fork();
+            Long leftResult = left.join();
+            Long rightResult = right.compute();
+            return leftResult + rightResult;
+        }
+        return 0L;
     }
 }
