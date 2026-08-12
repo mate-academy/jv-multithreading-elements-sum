@@ -13,7 +13,10 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        long result = 0;
+        for (int i = startPoint; i < finishPoint; i++) {
+            result += i;
+        }
+        return result;
     }
 }
