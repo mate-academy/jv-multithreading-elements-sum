@@ -59,7 +59,77 @@ public class MyTaskTest {
     }
 
     @Test
-    public void compute_mixedNumbers_ok() {
+    public void
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    compute_mixedNumbers_ok() {
         task = new MyTask(-60, 45);
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
         Long expected = -840L;
