@@ -16,7 +16,7 @@ public class MyTask extends RecursiveTask<Long> {
         if (finishPoint - startPoint <= 10) {
             long result = 0L;
             for (int i = startPoint; i < finishPoint; i++) {
-                result+= i;
+                result += i;
             }
             return (long) result;
         } else {
