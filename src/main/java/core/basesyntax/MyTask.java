@@ -1,8 +1,11 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int THRESHOLD = 10;
     private int startPoint;
     private int finishPoint;
 
@@ -13,7 +16,35 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        if (finishPoint - startPoint > THRESHOLD) {
+            List<RecursiveTask<Long>> subTasks = new ArrayList<>(createSubTasks());
+            for (RecursiveTask<Long> subTask : subTasks) {
+                subTask.fork();
+            }
+            long result = 0;
+            for (RecursiveTask<Long> subTask : subTasks) {
+                result += subTask.join();
+            }
+            return result;
+        } else {
+            long result = 0;
+            for (long i = startPoint; i < finishPoint; i++) {
+                result += i;
+            }
+            return result;
+        }
+
+    }
+
+    private List<RecursiveTask<Long>> createSubTasks() {
+        List<RecursiveTask<Long>> subTasks = new ArrayList<>();
+
+        int middle = startPoint + (finishPoint - startPoint) / 2;
+
+        RecursiveTask<Long> first = new MyTask(startPoint, middle);
+        RecursiveTask<Long> second = new MyTask(middle, finishPoint);
+        subTasks.add(first);
+        subTasks.add(second);
+        return subTasks;
     }
 }
