@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
+    private static final int THRESHOLD = 10;
     private int startPoint;
     private int finishPoint;
-    private static final int THRESHOLD = 10;
 
     public MyTask(int startPoint, int finishPoint) {
         this.startPoint = startPoint;
