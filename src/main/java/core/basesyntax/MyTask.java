@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.util.concurrent.RecursiveTask;
 
 public class MyTask extends RecursiveTask<Long> {
+    public static final int THRESHOLD = 10;
     private int startPoint;
     private int finishPoint;
 
@@ -13,7 +14,25 @@ public class MyTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        // write your code here
-        return null;
+        if (finishPoint - startPoint <= THRESHOLD) {
+            return getSum(startPoint, finishPoint);
+        } else {
+            int middle = startPoint + (finishPoint - startPoint) / 2;
+            MyTask left = new MyTask(startPoint, middle);
+            MyTask right = new MyTask(middle, finishPoint);
+            left.fork();
+            right.fork();
+            Long leftSum = left.join();
+            Long rightSum = right.join();
+            return leftSum + rightSum;
+        }
+    }
+
+    private Long getSum(int startPoint, int finishPoint) {
+        long sum = 0L;
+        for (int i = startPoint; i < finishPoint; i++) {
+            sum += i;
+        }
+        return sum;
     }
 }
